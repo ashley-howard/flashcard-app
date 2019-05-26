@@ -42,7 +42,7 @@ function startGame() {
 flashcard.addEventListener("click", flipCard);
 
 function flipCard() {
-    if ((arrayNum1 + 1) !== flashcardArr.length) {
+    if ((arrayNum1) <= flashcardArr.length) {
         // if side 1 is showing, change to side 2
         if (arrayNum2 === 0) {
             arrayNum2 = 1;
@@ -61,13 +61,15 @@ function flipCard() {
 
 function nextCard() {
     // pull next card only if arrayNum1 is less than the length of the Array
-    if ((arrayNum1 + 1) !== flashcardArr.length) {
+    if ((arrayNum1 + 1) < flashcardArr.length) {
         arrayNum1 += 1;
         arrayNum2 = 0;
         flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
     }
+
     // otherwise finish, show results, remove buttons-difficulty
     else {
+        arrayNum1 = flashcardArr.length + 1; // this makes the Results screen unclickable
         flashcardText.style.fontSize = "medium";
         flashcardText.innerHTML =
             "You have finished for today." + "<br>" +
