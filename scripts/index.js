@@ -30,6 +30,8 @@ function startGame() {
     hardCount = 0;
     incorrectCount = 0;
     btnGroupStart.style.display = "none";
+    flashcardText.style.display = "flex";
+    flashcardText.style.marginTop = "0";
     flashcardText.style.fontSize = "xx-large";
     btnGroupDifficulty.style.display = "block";
     textInfo.innerHTML = 'Click on the card to turn it over';
@@ -70,9 +72,12 @@ function nextCard() {
     // otherwise finish, show results, remove buttons-difficulty
     else {
         arrayNum1 = flashcardArr.length + 1; // this makes the Results screen unclickable
-        flashcardText.style.fontSize = "medium";
+        textInfo.innerHTML = "You've finished for today.";
+        flashcardText.style.display = "block";
+        flashcardText.style.marginTop = "50%";
+        flashcardText.style.fontSize = "larger";
         flashcardText.innerHTML =
-            "You have finished for today." + "<br>" +
+            "<strong>" + "Results" + "</strong><br>" +
             "Easy cards: " + easyCount + "<br>" +
             "Hard cards: " + hardCount + "<br>" +
             "Incorrect cards: " + incorrectCount;
