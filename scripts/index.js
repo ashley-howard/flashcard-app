@@ -57,7 +57,7 @@ function flipCard() {
             flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
         }
     }
-    else { }
+    else { console.log("Error") }
 }
 
 function nextCard() {
@@ -72,7 +72,7 @@ function nextCard() {
     // otherwise finish, show results, remove buttons-difficulty
     else {
         arrayNum1 = flashcardArr.length + 1; // this makes the Results screen unclickable
-        // infoMessage('finish');
+        infoMessage('finish');
         flashcardText.style.display = "block";
         flashcardText.style.marginTop = "50%";
         flashcardText.style.fontSize = "larger";
@@ -91,28 +91,34 @@ function nextCard() {
 function btn(difficulty) {
     if (difficulty === 'easy') {
         easyCount += 1;
+        infoMessage('easy');
     }
 
     else if (difficulty === 'hard') {
         hardCount += 1;
+        infoMessage('hard');
     }
 
     // incorrect
     else {
         incorrectCount += 1;
+        infoMessage('incorrect');
     }
     nextCard();
-    infoMessage('encourage')
 }
 
 function infoMessage(type) {
-    var randNo = Math.floor(Math.random() * 5);
+    var randNo = Math.floor(Math.random() * 4);
 
-    if (type === 'encourage' && arrayNum1 === 4) {
+    if (type === 'incorrect') {
+        textInfo.innerHTML = 'No problem, try this one instead!';
+    }
+
+    if (type === 'finish' && arrayNum1 === 4) {
         textInfo.innerHTML = "You've finished for today.";
     }
-    
-    else if (type === 'help' && arrayNum1 === 0) {
+
+    if (type === 'help' && arrayNum1 === 0) {
         textInfo.innerHTML = 'Now choose easy, hard, or incorrect';
     }
 
@@ -120,22 +126,22 @@ function infoMessage(type) {
         textInfo.innerHTML = "<br>";
     }
 
-    else if (type === 'encourage' && randNo === 0) {
+    if (type === 'easy' && randNo === 0) {
         textInfo.innerHTML = 'Great! Now try this one...';
     }
 
-    else if (type === 'encourage' && randNo === 1) {
+    else if (type === 'easy' && randNo === 1) {
         textInfo.innerHTML = 'Nice job. Keep going!';
     }
 
-    else if (type === 'encourage' && randNo === 2) {
+    else if (type === 'easy' && randNo === 2) {
         textInfo.innerHTML = 'Doing awesome. Next up...';
     }
 
-    else if (type === 'encourage' && randNo === 3) {
+    else if (type === 'easy' && randNo === 3) {
         textInfo.innerHTML = 'Great job! Next up...';
     }
-    else if (type === 'encourage' && randNo === 4) {
+    if (type === 'hard') {
         textInfo.innerHTML = 'Doing great. Try this one!';
     }
 
