@@ -1,0 +1,7 @@
+body{background-color:#b8b8b8}
+#flashcard{width:250px;height:350px;background-color:#fff;border-radius:10px;padding:10px;box-shadow:2px 9px 20px 0 #383838;margin:auto}
+#flashcard-text{display:flex;justify-content:center;align-items:center;height:100%;width:100%;font-size:2em;text-align:center}
+.container{justify-content:center}
+#buttons-start, #buttons-difficulty{text-align:center;padding:30px}
+#buttons-difficulty {display: none}
+h2{padding:20px}
