@@ -19,7 +19,7 @@ var easyCount = 0;
 var hardCount = 0;
 var incorrectCount = 0;
 
-var arrayNum1 = 0;
+var arrayNum1 = flashcardArr.length + 1; // to prevent 'unwanted' clicks
 var arrayNum2 = 0;
 
 
@@ -33,7 +33,6 @@ function startGame() {
     flashcardText.style.display = "flex";
     flashcardText.style.marginTop = "0";
     flashcardText.style.fontSize = "xx-large";
-    btnGroupDifficulty.style.display = "block";
     textInfo.innerHTML = 'Click on the card to turn it over';
 
     // Load first item from array
@@ -45,17 +44,17 @@ flashcard.addEventListener("click", flipCard);
 
 function flipCard() {
     if ((arrayNum1) <= flashcardArr.length) {
-        // if side 1 is showing, change to side 2
+        // if side 1 is showing, change to side 2 + and show Buttons
         if (arrayNum2 === 0) {
             arrayNum2 = 1;
             flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
-            console.log(`flashcardArr[${arrayNum1}][${arrayNum2}]`);
+            btnGroupDifficulty.style.display = "block";
+            infoMessage('help');
         }
         // vice versa
         else {
             arrayNum2 = 0;
             flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
-            console.log(`flashcardArr[${arrayNum1}][${arrayNum2}]`);
         }
     }
     else { }
@@ -67,12 +66,13 @@ function nextCard() {
         arrayNum1 += 1;
         arrayNum2 = 0;
         flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
+        btnGroupDifficulty.style.display = "none";
     }
 
     // otherwise finish, show results, remove buttons-difficulty
     else {
         arrayNum1 = flashcardArr.length + 1; // this makes the Results screen unclickable
-        textInfo.innerHTML = "You've finished for today.";
+        // infoMessage('finish');
         flashcardText.style.display = "block";
         flashcardText.style.marginTop = "50%";
         flashcardText.style.fontSize = "larger";
@@ -102,4 +102,46 @@ function btn(difficulty) {
         incorrectCount += 1;
     }
     nextCard();
+    infoMessage('encourage')
+}
+
+function infoMessage(type) {
+    var randNo = Math.floor(Math.random() * 5);
+
+    if (type === 'encourage' && arrayNum1 === 4) {
+        textInfo.innerHTML = "You've finished for today.";
+    }
+    
+    else if (type === 'help' && arrayNum1 === 0) {
+        textInfo.innerHTML = 'Now choose easy, hard, or incorrect';
+    }
+
+    else if (type === 'help' && arrayNum1 === 1) {
+        textInfo.innerHTML = "<br>";
+    }
+
+    else if (type === 'encourage' && randNo === 0) {
+        textInfo.innerHTML = 'Great! Now try this one...';
+    }
+
+    else if (type === 'encourage' && randNo === 1) {
+        textInfo.innerHTML = 'Nice job. Keep going!';
+    }
+
+    else if (type === 'encourage' && randNo === 2) {
+        textInfo.innerHTML = 'Doing awesome. Next up...';
+    }
+
+    else if (type === 'encourage' && randNo === 3) {
+        textInfo.innerHTML = 'Great job! Next up...';
+    }
+    else if (type === 'encourage' && randNo === 4) {
+        textInfo.innerHTML = 'Doing great. Try this one!';
+    }
+
+    /*
+    setTimeout(function () {
+        textInfo.innerHTML = "<br>";
+    }, 2000);
+    */
 }
