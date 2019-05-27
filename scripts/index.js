@@ -1,9 +1,20 @@
-// front, back, difficulty (0 = new, 1 = easy, 2 = hard, 3 = incorrect)
 var flashcardArr = [
-    ["Bello", "Nice", 0],
-    ["Casa", "House", 0],
-    ["Uomo", "Man", 0]
+    ["Bello", "Nice"],
+    ["Casa", "House"],
+    ["Ragazza", "Girl"],
+    ["Donna", "Woman"],
+    ["Uomo", "Man"]
 ];
+
+var arrEasy = [];
+var arrHard = [];
+var arrIncorrect = [];
+
+function concatArrays() {
+    var arrConcat = arrHard.concat(arrIncorrect);
+    return arrConcat;
+}
+
 
 const flashcard = document.getElementById("flashcard");
 const flashcardText = document.getElementById("flashcard-text");
@@ -57,7 +68,7 @@ function flipCard() {
             flashcardText.innerHTML = flashcardArr[arrayNum1][arrayNum2];
         }
     }
-    else { console.log("Error") }
+    else { console.log("Can't flip card") }
 }
 
 function nextCard() {
@@ -92,17 +103,23 @@ function btn(difficulty) {
     if (difficulty === 'easy') {
         easyCount += 1;
         infoMessage('easy');
+        arrEasy.push(flashcardArr[arrayNum1]);
+
     }
 
     else if (difficulty === 'hard') {
         hardCount += 1;
         infoMessage('hard');
+        arrHard.push(flashcardArr[arrayNum1]);
+
     }
 
     // incorrect
     else {
         incorrectCount += 1;
         infoMessage('incorrect');
+        arrIncorrect.push(flashcardArr[arrayNum1]);
+
     }
     nextCard();
 }
@@ -114,7 +131,7 @@ function infoMessage(type) {
         textInfo.innerHTML = 'No problem, try this one instead!';
     }
 
-    if (type === 'finish' && arrayNum1 === 4) {
+    if (type === 'finish' && flashcardArr + 1) {
         textInfo.innerHTML = "You've finished for today.";
     }
 
