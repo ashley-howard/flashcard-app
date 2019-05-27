@@ -20,6 +20,46 @@
 
     <h2 class="text-center">Flashcards!</h2>
 
+    <div id="screenIntro" class="container">
+        <h4 class="text-center">Welcome</h4>
+
+        <p>You don't have any words added.</p>
+
+        <p>Click the button below to add some!</p>
+
+        <button onclick="changeScreen('add')" type="button" class="btn btn-light">Add words</button>
+
+    </div>
+
+    <div id="screenAdd" class="container">
+        <h4 class="text-center">Let's add some cards!</h4>
+
+        <div class="row row-add">
+            <!-- Card Front -->
+            <div class="col-6">
+                <span>Front</span>
+
+                <div id="flashcard-add">
+                    <span><input id="flashcard-add-1" type="text" name="flashcard-input"></span>
+                </div>
+            </div>
+
+            <!-- Card Back -->
+            <div class="col-6">
+                <span>Back</span>
+
+                <div id="flashcard-add">
+                    <span><input id="flashcard-add-2" type="text" name="flashcard-input"></span>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="addCard()" type="button" class="btn btn-light" id="btn-add">Add</button>
+        <button onclick="finishAddCard()" type="button" class="btn btn-light" id="btn-add-finish">Finished</button>
+        <p id="addInfo"></p>
+
+    </div>
+
     <div id="screenGame" class="container">
         <p id="text-info" class="text-center">Click start below to get started</p>
 
@@ -74,7 +114,10 @@
 
             <div class="btn-settings">
                 <button onclick="" type="button" class="btn btn-light" id="btn-save-settings">Save</button>
+                <button onclick="clearData()" type="button" class="btn btn-light" id="btn-clear-data">Clear Data</button>
             </div>
+
+            <p id="settingsInfo"></p>
 
         </div>
     </div>

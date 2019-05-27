@@ -1,16 +1,20 @@
 body{background:#b3dced;background:-moz-linear-gradient(left,rgba(179,220,237,1) 0,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);background:-webkit-linear-gradient(left,rgba(179,220,237,1) 0,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);background:linear-gradient(to right,rgba(179,220,237,1) 0,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee', GradientType=1 )}
-#flashcard{width:250px;height:350px;background-color:#fff;border-radius:10px;padding:10px;box-shadow:2px 9px 20px 0 #383838;margin:auto}
+#screenIntro, #screenAdd, #screenGame, #screenSettings{display:none}
+#flashcard,#flashcard-add{width:250px;height:350px;background-color:#fff;border-radius:10px;padding:10px;box-shadow:2px 9px 20px 0 #383838;margin:auto}
 #flashcard-text{display:flex;justify-content:center;align-items:center;height:100%;width:100%;font-size:2em;text-align:center}
+#flashcard-add-1, #flashcard-add-2{display:flex;justify-content:center;align-items:center;height:100%;width:100%;font-size:2em;text-align:center}
 .container{justify-content:center}
 #buttons-difficulty,#buttons-start{text-align:center;padding:30px}
 #buttons-difficulty{display:none}
 h2{padding:20px;color:#fff}
 #text-info,p{color:#fff}
 i.fas.fa-cog{padding:15px;font-size:1.5em;color:#fff;position:absolute;cursor:pointer}
-#screenSettings{display:none}
 input[type=number]{width:50px}
-#screenSettings.container{text-align:center;color:#fff}
+input[type=text]{overflow:auto;text-align:center}
+#screenAdd.container,#screenIntro.container,#screenSettings.container{text-align:center;color:#fff}
 .row-title{text-align:end}
 .row-value{text-align:left}
 .row-settings{margin-left:-70px}
 .btn-settings{margin-top:20px}
+.row-add{width:60%;margin:auto}
+#btn-add, #btn-add-finish{margin-top:30px}
