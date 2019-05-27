@@ -31,6 +31,7 @@ const screenAdd = document.getElementById("screenAdd");
 const screenGame = document.getElementById("screenGame");
 const screenSettings = document.getElementById("screenSettings");
 
+var rememberScreen = '';
 var easyCount = 0;
 var hardCount = 0;
 var incorrectCount = 0;
@@ -38,7 +39,7 @@ var incorrectCount = 0;
 var arrayNum1 = flashcardArr.length + 1; // to prevent 'unwanted' clicks
 var arrayNum2 = 0;
 
-if (flashcardArr.length > 0 ) {
+if (flashcardArr.length > 0) {
     changeScreen('game');
 }
 else {
@@ -234,6 +235,7 @@ function changeScreen(screen) {
         screenAdd.style.display = 'none';
         screenGame.style.display = 'none';
         screenSettings.style.display = 'none';
+        // btnSettings.setAttribute("onclick", `settings('intro')`);
     }
 
     else if (screen === 'add') {
@@ -245,7 +247,7 @@ function changeScreen(screen) {
     }
 
     else if (screen === 'game') {
-        btnSettings.setAttribute("onclick", `changeScreen('settings')`);
+        // btnSettings.setAttribute("onclick", `changeScreen('settings')`);
         screenIntro.style.display = 'none';
         screenAdd.style.display = 'none';
         screenGame.style.display = 'block';
@@ -253,7 +255,7 @@ function changeScreen(screen) {
     }
 
     else if (screen === 'settings') {
-        btnSettings.setAttribute("onclick", `changeScreen('game')`);
+        // btnSettings.setAttribute("onclick", `changeScreen('game')`);
         screenIntro.style.display = 'none';
         screenAdd.style.display = 'none';
         screenGame.style.display = 'none';
@@ -261,7 +263,28 @@ function changeScreen(screen) {
     }
 }
 
-function clearData(){
+function clearData() {
     localStorage.clear();
     settingsInfo.innerHTML = "Please refresh to see changes"
+}
+
+function settings() {
+    if (screenIntro.style.display === 'block') {
+        rememberScreen = 'intro';
+        changeScreen('settings');
+    }
+
+    else if (screenSettings.style.display === 'block') {
+        changeScreen(`${rememberScreen}`);
+    }
+
+    else if (screenAdd.style.display === 'block') {
+        rememberScreen = 'add';
+        changeScreen('settings');
+    }
+
+    else if (screenGame.style.display === 'block') {
+        rememberScreen = 'game';
+        changeScreen('settings');
+    }
 }
