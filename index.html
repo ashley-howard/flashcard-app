@@ -6,6 +6,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
 
     <title>Flashcards!</title>
@@ -13,10 +15,13 @@
 
 <body>
 
-    <h2 class="text-center">Flashcards!</h2>
-    <p id="text-info" class="text-center">Click start below to get started</p>
 
-    <div class="container">
+    <a id="btn-settings" onclick="changeScreen('settings')" title="Settings"><i class="fas fa-cog"></i></a>
+
+    <h2 class="text-center">Flashcards!</h2>
+
+    <div id="screenGame" class="container">
+        <p id="text-info" class="text-center">Click start below to get started</p>
 
         <div id="flashcard">
             <span id="flashcard-text"></span>
@@ -32,7 +37,46 @@
             <button onclick="btn('incorrect')" type="button" class="btn btn-danger"
                 id="btn-incorrect">Incorrect</button>
         </div>
+    </div>
 
+    <div id="screenSettings" class="container">
+        <h4 class="text-center">Settings</h4>
+
+        <div class="settings-items">
+            <p>How often do you want to see these cards per session?</p>
+
+            <div class="row row-settings">
+                <div class="col-6 row-title">
+                    Easy:
+                </div>
+                <div class="col-6 row-value">
+                    <input type="number" name="frequency-easy" value="1"> time(s)
+                </div>
+            </div>
+
+            <div class="row row-settings">
+                <div class="col-6 row-title">
+                    Hard:
+                </div>
+                <div class="col-6 row-value">
+                    <input type="number" name="frequency-hard" value="2"> time(s)
+                </div>
+            </div>
+
+            <div class="row row-settings">
+                <div class="col-6 row-title">
+                    Incorrect:
+                </div>
+                <div class="col-6 row-value">
+                    <input type="number" name="frequency-incorrect" value="3"> time(s)
+                </div>
+            </div>
+
+            <div class="btn-settings">
+                <button onclick="" type="button" class="btn btn-light" id="btn-save-settings">Save</button>
+            </div>
+
+        </div>
     </div>
 
 

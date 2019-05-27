@@ -4,5 +4,13 @@ body{background:#b3dced;background:-moz-linear-gradient(left,rgba(179,220,237,1)
 .container{justify-content:center}
 #buttons-difficulty,#buttons-start{text-align:center;padding:30px}
 #buttons-difficulty{display:none}
-h2{padding:20px; color: #fff}
-#text-info{color: #fff;}
+h2{padding:20px;color:#fff}
+#text-info,p{color:#fff}
+i.fas.fa-cog{padding:15px;font-size:1.5em;color:#fff;position:absolute;cursor:pointer}
+#screenSettings{display:none}
+input[type=number]{width:50px}
+#screenSettings.container{text-align:center;color:#fff}
+.row-title{text-align:end}
+.row-value{text-align:left}
+.row-settings{margin-left:-70px}
+.btn-settings{margin-top:20px}

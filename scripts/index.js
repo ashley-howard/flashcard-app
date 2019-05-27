@@ -15,7 +15,6 @@ function concatArrays() {
     return arrConcat;
 }
 
-
 const flashcard = document.getElementById("flashcard");
 const flashcardText = document.getElementById("flashcard-text");
 const btnGroupStart = document.getElementById("buttons-start");
@@ -25,6 +24,10 @@ const btnEasy = document.getElementById("btn-easy");
 const btnHard = document.getElementById("btn-hard");
 const btnIncorrect = document.getElementById("btn-incorrect");
 const textInfo = document.getElementById("text-info");
+
+const btnSettings = document.getElementById("btn-settings");
+const screenGame = document.getElementById("screenGame");
+const screenSettings = document.getElementById("screenSettings");
 
 var easyCount = 0;
 var hardCount = 0;
@@ -167,4 +170,17 @@ function infoMessage(type) {
         textInfo.innerHTML = "<br>";
     }, 2000);
     */
+}
+
+function changeScreen(screen) {
+    if (screen === 'settings') {
+        btnSettings.setAttribute("onclick", `changeScreen('game')`);
+        screenGame.style.display = 'none';
+        screenSettings.style.display = 'block';
+    }
+    else {
+        btnSettings.setAttribute("onclick", `changeScreen('settings')`);
+        screenGame.style.display = 'block';
+        screenSettings.style.display = 'none';
+    }
 }
