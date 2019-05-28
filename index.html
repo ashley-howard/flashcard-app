@@ -33,10 +33,11 @@
 
     <div id="screenAdd" class="container">
         <h4 class="text-center">Let's add some cards!</h4>
+        <p>Hint: Press the Enter key to advance</p>
 
         <div class="row row-add">
             <!-- Card Front -->
-            <div class="col-6">
+            <div class="col-12 col-lg-6" id="flashcard-front">
                 <span>Front</span>
 
                 <div id="flashcard-add">
@@ -45,7 +46,7 @@
             </div>
 
             <!-- Card Back -->
-            <div class="col-6">
+            <div class="col-12 col-lg-6" id="flashcard-back">
                 <span>Back</span>
 
                 <div id="flashcard-add">
@@ -53,6 +54,8 @@
                 </div>
             </div>
         </div>
+
+        <button onclick="switchSides()" type="button" class="btn btn-light" id="btn-switchsides">Go to back</button>
 
         <button onclick="addCard()" type="button" class="btn btn-light" id="btn-add">Add</button>
         <button onclick="finishAddCard()" type="button" class="btn btn-light" id="btn-add-finish">Finished</button>

@@ -10,6 +10,8 @@ function concatArrays() {
 }
 
 const flashcard = document.getElementById("flashcard");
+const flashcardFront = document.getElementById("flashcard-front");
+const flashcardBack = document.getElementById("flashcard-back");
 const flashcardAdd1 = document.getElementById("flashcard-add-1");
 const flashcardAdd2 = document.getElementById("flashcard-add-2");
 const addInfo = document.getElementById("addInfo");
@@ -25,6 +27,7 @@ const btnHard = document.getElementById("btn-hard");
 const btnIncorrect = document.getElementById("btn-incorrect");
 const textInfo = document.getElementById("text-info");
 const btnSettings = document.getElementById("btn-settings");
+const btnSwitchSides = document.getElementById("btn-switchsides");
 
 const screenIntro = document.getElementById("screenIntro");
 const screenAdd = document.getElementById("screenAdd");
@@ -47,13 +50,27 @@ else {
 }
 
 function addCard() {
-    if (flashcardAdd1.value != '' && flashcardAdd2.value != '') {
+    if (flashcardAdd1.value != '' && flashcardAdd2.value != '' && jQuery(window).width() > 992) {
         flashcardArr.push([flashcardAdd1.value, flashcardAdd2.value])
         localStorage.setItem('flashcards', JSON.stringify(flashcardArr));
         flashcardAdd1.value = '';
         flashcardAdd2.value = '';
         flashcardAdd1.focus();
     }
+
+    // for mobiles
+    else if (flashcardAdd1.value != '' && flashcardAdd2.value != '' && jQuery(window).width() < 992) {
+        flashcardArr.push([flashcardAdd1.value, flashcardAdd2.value])
+        localStorage.setItem('flashcards', JSON.stringify(flashcardArr));
+        flashcardFront.style.display = 'block';
+        flashcardBack.style.display = 'none';
+        btnSwitchSides.innerHTML = 'Go to back';
+        flashcardAdd1.value = '';
+        flashcardAdd2.value = '';
+        flashcardAdd1.focus();
+    }
+
+
     else {
         addInfo.innerHTML = "Please write on both sides before clicking add";
         setTimeout(function () {
@@ -65,10 +82,18 @@ function addCard() {
 
 screenAdd.onload = flashcardAdd1.focus();
 
+
+
 // Enter key front card
 flashcardAdd1.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && jQuery(window).width() > 992) {
+        flashcardAdd2.focus();
+    }
+    else if (event.keyCode === 13 && jQuery(window).width() < 992){
+        flashcardFront.style.display = 'none';
+        flashcardBack.style.display = 'block';
+        btnSwitchSides.innerHTML = 'Go to front';
         flashcardAdd2.focus();
     }
 });
@@ -76,7 +101,11 @@ flashcardAdd1.addEventListener("keyup", function (event) {
 // Enter key back card
 flashcardAdd2.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && jQuery(window).width() > 992) {
+        btnAdd.click();
+    }
+    else if (event.keyCode === 13 && jQuery(window).width() < 992){
+        btnSwitchSides.innerHTML = 'Go to front';
         btnAdd.click();
     }
 });
@@ -243,7 +272,7 @@ function changeScreen(screen) {
         screenAdd.style.display = 'block';
         screenGame.style.display = 'none';
         screenSettings.style.display = 'none';
-        //flashcardAdd1.focus();
+        flashcardAdd1.focus();
     }
 
     else if (screen === 'game') {
@@ -286,5 +315,19 @@ function settings() {
     else if (screenGame.style.display === 'block') {
         rememberScreen = 'game';
         changeScreen('settings');
+    }
+}
+
+function switchSides() {
+    if (btnSwitchSides.innerHTML === 'Go to back' && jQuery(window).width() < 992) {
+        flashcardFront.style.display = 'none';
+        flashcardBack.style.display = 'block';
+        btnSwitchSides.innerHTML = 'Go to front';
+    }
+
+    else if (btnSwitchSides.innerHTML = 'Go to front' && jQuery(window).width() < 992) {
+        flashcardFront.style.display = 'block';
+        flashcardBack.style.display = 'none';
+        btnSwitchSides.innerHTML = 'Go to back';
     }
 }
